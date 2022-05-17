@@ -19,6 +19,7 @@ steps:
   - apt install -y wget
   - wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
   - dpkg -i packages-microsoft-prod.deb
-  - apt install -y azure-cli azure-functions-core-tools-4
+  - apt install -y azure-cli npm
+  - npm i -g azure-functions-core-tools@4 --unsafe-perm true
   - az login --service-principal -u $AZURE_SP -p $AZURE_SP_PASSWORD --tenant $AZURE_SP_TENANT
   - func azure functionapp publish $FUNCTION_APP_NAME --python
