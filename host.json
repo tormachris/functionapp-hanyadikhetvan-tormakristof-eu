@@ -3,7 +3,7 @@
   "functionTimeout": "00:00:10",
   "healthMonitor": {
     "enabled": false
-  }
+  },
   "extensions": {
     "http": {
       "routePrefix": ""
