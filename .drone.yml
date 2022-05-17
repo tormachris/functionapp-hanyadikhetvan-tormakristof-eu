@@ -2,6 +2,9 @@ kind: pipeline
 type: docker
 name: Azure Function App
 
+image_pull_secrets:
+- dockerconfig
+
 steps:
 - name: Build and upload function app
   environment:
@@ -13,15 +16,7 @@ steps:
      from_secret: AZURE_SP_TENANT
     FUNCTION_APP_NAME:
      from_secret: FUNCTION_APP_NAME
-  image: ubuntu:20.04
+  image: registry.kmlabz.com/tormakris/ubuntu-azure-cli
   commands:
-  - apt update
-  - apt install -y wget
-  - wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-  - dpkg -i packages-microsoft-prod.deb
-  - echo 'tzdata tzdata/Areas select Europe' | debconf-set-selections
-  - echo 'tzdata tzdata/Zones/Europe select Budapest' | debconf-set-selections
-  - DEBIAN_FRONTEND="noninteractive" apt install -y azure-cli npm
-  - npm i -g azure-functions-core-tools@4 --unsafe-perm true
   - az login --service-principal -u $AZURE_SP -p $AZURE_SP_PASSWORD --tenant $AZURE_SP_TENANT
   - func azure functionapp publish $FUNCTION_APP_NAME --python
