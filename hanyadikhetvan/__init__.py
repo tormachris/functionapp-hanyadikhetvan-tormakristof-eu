@@ -1,4 +1,3 @@
-import logging
 from datetime import date
 import azure.functions as func
 
