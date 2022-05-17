@@ -19,4 +19,4 @@ steps:
   image: registry.kmlabz.com/tormakris/ubuntu-azure-cli
   commands:
   - az login --service-principal -u $AZURE_SP -p $AZURE_SP_PASSWORD --tenant $AZURE_SP_TENANT
-  - func azure functionapp publish $FUNCTION_APP_NAME --python
+  - func azure functionapp publish $FUNCTION_APP_NAME --python --build=local
