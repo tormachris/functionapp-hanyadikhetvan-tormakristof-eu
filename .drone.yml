@@ -16,6 +16,6 @@ steps:
   image: mcr.microsoft.com/azure-cli
   commands:
   - apk add npm
-  - npm i -g azure-functions-core-tools@3 --unsafe-perm true
+  - npm i -g azure-functions-core-tools@core --unsafe-perm true
   - az login --service-principal -u $AZURE_SP -p $AZURE_SP_PASSWORD --tenant $AZURE_SP_TENANT
   - func azure functionapp publish $FUNCTION_APP_NAME --python
