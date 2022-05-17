@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "Proxy1": {
+      "matchCondition": {
+        "route": "/"
+      },
+      "backendUri": "https://fn-hanyadikhetvan.azurewebsites.net/hanyadikhetvan"
+    }
+  }
+}
