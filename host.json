@@ -1,5 +1,12 @@
 {
-  "http": {
-    "routePrefix": ""
+  "version": "2.0",
+  "functionTimeout": "00:00:10",
+  "healthMonitor": {
+    "enabled": false
+  }
+  "extensions": {
+    "http": {
+      "routePrefix": ""
+    }
   }
 }
