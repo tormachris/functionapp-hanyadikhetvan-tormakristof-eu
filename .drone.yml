@@ -13,9 +13,12 @@ steps:
      from_secret: AZURE_SP_TENANT
     FUNCTION_APP_NAME:
      from_secret: FUNCTION_APP_NAME
-  image: mcr.microsoft.com/azure-cli
+  image: ubuntu:20.04
   commands:
-  - apk add npm
-  - npm i -g azure-functions-core-tools@core --unsafe-perm true
+  - apt update
+  - apt install -y wget
+  - wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+  - dpkg -i packages-microsoft-prod.deb
+  - apt install -y azure-cli azure-functions-core-tools-4
   - az login --service-principal -u $AZURE_SP -p $AZURE_SP_PASSWORD --tenant $AZURE_SP_TENANT
   - func azure functionapp publish $FUNCTION_APP_NAME --python
